@@ -28,7 +28,8 @@ async def read_items(symbol: str, mode: str, period: str, file_name: str):
         / "fig_data"
         / f"{symbol}/{mode}/{period}/{file_name}"
     )
-    print(file_path)
+    file_path = "/root/chameleon-quant/fig_data/BTC_USDT/future live/5m/2025-01-01 00_00_00.html"
+    print(233, file_path)
     with open(file_path, "rb") as f:
         data = f.read()
     return data
