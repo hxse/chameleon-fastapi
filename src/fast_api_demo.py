@@ -4,32 +4,15 @@ from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse, HTMLResponse
 import uvicorn
 
-import sys
 from pathlib import Path
 
-if sys.platform.startswith("linux"):
-    print("Linux")
-    config_path = "/root/chameleon-quant/strategy/config.json"
-elif sys.platform.startswith("win"):
-    config_path = Path.home() / "Downloads/chameleon/strategy/config.json"
-    print("Windows")
-elif sys.platform.startswith("darwin"):
-    print("macOS")
-else:
-    print("Unsatisfactory")
 
 app = FastAPI()
 
 
 @app.get("/fig_data/{symbol}/{mode}/{period}/{file_name}", response_class=HTMLResponse)
 async def read_items(symbol: str, mode: str, period: str, file_name: str):
-    file_path = (
-        Path(config_path).parent.parent
-        / "fig_data"
-        / f"{symbol}/{mode}/{period}/{file_name}"
-    )
-    file_path = "/app/src/fig_data/BTC_USDT/future live/5m/2025-01-01 00_00_00.html"
-    print(233, file_path, Path(file_path).is_file(), Path(config_path).is_file())
+    file_path = Path(f"/app/src/fig_data/{symbol}/{mode}/{period}/{file_name}")
     with open(file_path, "rb") as f:
         data = f.read()
     return data
