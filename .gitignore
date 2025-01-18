@@ -1,3 +1,9 @@
+config.json
+csv/
+fig_data/
+strategy/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
