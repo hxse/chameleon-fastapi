@@ -19,7 +19,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["127.0.0.1:5006"],
+    allow_origins=["0.0.0.0:5006", "127.0.0.1:5006"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,7 +36,7 @@ async def read_items(symbol: str, mode: str, period: str, file_name: str):
 
 @app.get("/bokeh/{name}")
 async def get_bokeh(request: Request, name: str):
-    bokeh_api = "http://127.0.0.1:5006"
+    bokeh_api = "http://0.0.0.0:5006"
     script = server_document(url=f"{bokeh_api}/{name}")
     return templates.TemplateResponse(
         "bokeh.html", {"request": request, "bokeh_script": script}
@@ -56,4 +56,4 @@ async def root(request: Request):
 
 if __name__ == "__main__":
     print("run fast_api")
-    uvicorn.run("fast_api_demo:app", host="127.0.0.1", port=2197)
+    uvicorn.run("fast_api_demo:app", host="0.0.0.0", port=2197)

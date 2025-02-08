@@ -94,7 +94,7 @@ def main(dir_path, sleep=1000 * 5):
         io_loop=IOLoop(),
         port=5006,
         allow_websocket_origin=["*"],
-        allow_origin=["*", "0.0.0.0:2197"],
+        allow_origin=["*", "0.0.0.0:2197", "127.0.0.1:2197"],
         address="0.0.0.0",
         show=False,
     )
