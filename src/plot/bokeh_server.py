@@ -56,7 +56,7 @@ def update(df_path, cf_path, name):
     return _update
 
 
-def modify_doc(df_path, cf_path, name, sleep=1000 * 5):
+def modify_doc(df_path, cf_path, name, sleep=1000 * 15):
     def _modify_doc(doc):
         nonlocal df_path, cf_path, name, sleep
         df_path = Path(df_path)
@@ -80,7 +80,7 @@ def get_route_name(i):
     return (" ".join([*i.parts[-4:-1], i.stem])).replace(" ", "_")
 
 
-def main(dir_path, sleep=1000 * 5):
+def main(dir_path, sleep=1000 * 15):
     sleep = int(sleep)
     apps = {}
     for i in get_csv_list(dir_path):
@@ -106,4 +106,4 @@ def main(dir_path, sleep=1000 * 5):
 if __name__ == "__main__":
     import sys
 
-    main(sys.argv[1])
+    main(*sys.argv[1:])
