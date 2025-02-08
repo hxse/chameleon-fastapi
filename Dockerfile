@@ -27,4 +27,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Reset the entrypoint, don't invoke `uv`
 ENTRYPOINT []
 
-CMD ["uv", "run", "python", "./src/fast_api_demo.py"]
+CMD ["uv", "run", "python", "./src/fast_api_demo.py", "/app/src/fig_data"]
