@@ -45,11 +45,11 @@ async def get_bokeh(
 
 
 @app.get("/", response_class=HTMLResponse)
-async def root(request: Request):
+async def root(request: Request, bokeh_api: str = "http://0.0.0.0:5006"):
     global dirPath
     arr = get_csv_list(dirPath)
     res = [get_route_name(i) for i in arr]
-    url_arr = ["/bokeh" + "/" + i for i in res]
+    url_arr = ["/bokeh" + "/" + i + f"?bokeh_api={bokeh_api}" for i in res]
     return templates.TemplateResponse(
         "index.html", {"request": request, "url_arr": url_arr}
     )
