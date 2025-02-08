@@ -35,8 +35,9 @@ async def read_items(symbol: str, mode: str, period: str, file_name: str):
 
 
 @app.get("/bokeh/{name}")
-async def get_bokeh(request: Request, name: str):
-    bokeh_api = "http://0.0.0.0:5006"
+async def get_bokeh(
+    request: Request, name: str, bokeh_api: str = "http://0.0.0.0:5006"
+):
     script = server_document(url=f"{bokeh_api}/{name}")
     return templates.TemplateResponse(
         "bokeh.html", {"request": request, "bokeh_script": script}
