@@ -198,14 +198,7 @@ def main(dir_path, sleep=1000 * 15, test=False):
         )
         apps[name] = app
 
-    server = Server(
-        apps,
-        port=5006,
-        allow_websocket_origin=["*"],
-        check_unused_sessions=1000 * 60 * 60 * 24 * 1.1,
-        unused_session_lifetime=1000 * 60 * 60 * 24,
-        address="0.0.0.0",
-    )
+    server = Server(apps, port=5006)
     server.start()
     server.io_loop.add_callback(server.show, "/")
     server.io_loop.start()
